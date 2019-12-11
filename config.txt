@@ -1,0 +1,13 @@
+# Configuration File For widgets on QT Application
+# Use following format
+# "Name", "StartCmd", "StopCmd", "TopicName", "Target Frequency (Int)"
+
+#"<SERVICE_NAME_1>", "<PATH/TO/STARTUP_BASH_SCRIPT>", "<PATH/TO/SHUTDOWN_BASH_SCRIPT>", "<ROS_TOPIC_NAME>", "<ROS_MSG_TYPE>" , "<EXPECTED_REFRESH_RATE>"
+#"<SERVICE_NAME_2>", "<PATH/TO/STARTUP_BASH_SCRIPT>", "<PATH/TO/SHUTDOWN_BASH_SCRIPT>", "<ROS_TOPIC_NAME>", "<ROS_MSG_TYPE>" , "<EXPECTED_REFRESH_RATE>"
+
+# Example:
+#"Camera Left", "../scripts/run_camera.bash", "../scripts/stop_cameras.bash", "/stereo/left/image_raw", "sensor_msgs/Image", "20"
+#"Camera Right", "../scripts/run_camera.bash", "../scripts/stop_cameras.bash", "/stereo/right/image_raw", "sensor_msgs/Image", "20"
+#"Lidar", "../scripts/run_velodyne.bash", "../scripts/stop_velodyne.bash", "/velodyne_2dscan", "sensor_msgs/LaserScan", "5"
+#"Localization", "../scripts/run_enml_localization.bash", "../scripts/stop_enml_localization.bash", "enml/localization", "geometry_msgs/PoseStamped", "10"
+#"Obstacle Avoidance", "../scripts/run_kinect_obstacle_avoidance.bash", "../scripts/stop_kinect_obstacle_avoidance.bash", "/desired_velocity", "geometry_msgs/Twist", "15"
