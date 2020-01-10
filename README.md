@@ -4,6 +4,7 @@ A graphical user interface for monitoring and launching ROS nodes.
 ### Build
 In the project directory run
 ```bash
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:`pwd`
 make
 ```
 
