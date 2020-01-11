@@ -24,14 +24,17 @@ INCLUDE_DIRECTORIES(src/)
 set(libs roslib popt pthread rt)
 
 qt4_wrap_cpp(GUIMONITOR_MOC_SRCS
-  src/guimonitor.h
+  src/gui_topic.h
+  src/gui_monitor.h
 )
 
 
 set (target gui_monitor)
 ROSBUILD_ADD_EXECUTABLE(${target}
-                        src/gui_monitor_main.cpp
-                        src/guimonitor.cpp
+                        src/main.cpp
+                        src/topic_config.cpp
+                        src/gui_monitor.cpp
+                        src/gui_topic.cpp
                         ${GUIMONITOR_MOC_SRCS})
 add_dependencies(${target} ${GUIMONITOR_MOC_SRCS} rosbuild_precompile)
 target_link_libraries(${target} ${libs} ${QT_LIBRARIES})
