@@ -85,5 +85,9 @@ int main(int argc, char** argv) {
   running_ = false;
   ros_thread.join();
 
+  for (const auto& c : tcm.configs) {
+    c.RunStopCommand();
+  }  
+
   return gui_ret_val;
 }

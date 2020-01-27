@@ -67,6 +67,15 @@ GUITopic::GUITopic(QWidget* parent, const TopicConfig& cfg)
 GUITopic::~GUITopic() {}
 
 void GUITopic::UpdateStateSlot() {
+
+  if (cfg.target_freq <= 0) {
+    status->setText("N/A");
+    status->setStyleSheet("QLabel { color : gray; }");
+    freq->setText("N/A");
+    freq->setStyleSheet("QLabel { color : gray; }");
+    return;
+  }
+
   freq->setText((std::to_string(cfg.current_freq) + " Hz").c_str());
   if (cfg.current_freq >= cfg.target_freq) {
     freq->setStyleSheet("QLabel { color : green; }");
@@ -85,12 +94,6 @@ void GUITopic::UpdateStateSlot() {
 
 void GUITopic::UpdateState() { this->UpdateStateSignal(); }
 
-void CallTerminal(const std::string& cmd) {
-  const auto result = std::system(cmd.c_str());
-  std::cout << "Issued command \"" << cmd << "\", returned code " << result
-            << std::endl;
-}
+void GUITopic::StartCommand() { cfg.RunStartCommand(); }
 
-void GUITopic::StartCommand() { CallTerminal(cfg.start_command); }
-
-void GUITopic::StopCommand() { CallTerminal(cfg.stop_command); }
+void GUITopic::StopCommand() { cfg.RunStopCommand(); }

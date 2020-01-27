@@ -22,6 +22,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Path.h>
+#include <nav_msgs/Odometry.h>
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/LaserScan.h>
 #include <sensor_msgs/PointCloud2.h>
@@ -120,6 +121,20 @@ void TopicConfig::ComputeResults(const float loop_rate) {
   update_count = 0;
 }
 
+void CallTerminal(const std::string& cmd) {
+  const auto result = std::system(cmd.c_str());
+  std::cout << "Issued command \"" << cmd << "\", returned code " << result
+            << std::endl;
+}
+
+void TopicConfig::RunStartCommand() const {
+  CallTerminal(start_command);
+}
+
+void TopicConfig::RunStopCommand() const {
+  CallTerminal(stop_command);
+}
+
 std::pair<bool, std::string> TopicConfig::GetNextBlock(
     std::string* line) const {
   const auto start_idx = line->find("\"");
@@ -165,6 +180,14 @@ std::vector<ros::Subscriber> TopicConfigManager::SetupSubscribers(
       subscribers.push_back(n->subscribe(
           cfg.topic_name, 10,
           &TopicConfig::UpdateFrequency<sensor_msgs::LaserScan>, &cfg));
+    } else if (type_str == "nav_msgs/Odometry") {
+      subscribers.push_back(n->subscribe(
+          cfg.topic_name, 10,
+          &TopicConfig::UpdateFrequency<nav_msgs::Odometry>, &cfg));
+    } else if (type_str == "sensor_msgs/PointCloud2") {
+      subscribers.push_back(n->subscribe(
+          cfg.topic_name, 10,
+          &TopicConfig::UpdateFrequency<sensor_msgs::PointCloud2>, &cfg));
     } else {
       std::cerr << "Unknown type: " << type_str << std::endl;
     }

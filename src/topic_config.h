@@ -44,6 +44,9 @@ struct TopicConfig {
 
   void ComputeResults(const float loop_rate);
 
+  void RunStartCommand() const;
+  void RunStopCommand() const;
+
  private:
   std::pair<bool, std::string> GetNextBlock(std::string* line) const;
 };
