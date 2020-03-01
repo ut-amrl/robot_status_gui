@@ -21,8 +21,10 @@
 
 #include "topic_config.h"
 
+#ifndef Q_MOC_RUN
 #include <QWidget>
 #include <QtGui>
+#endif
 
 class GUITopic : public QWidget {
   Q_OBJECT

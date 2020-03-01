@@ -20,7 +20,9 @@
 
 #include "gui_topic.h"
 
+#ifndef Q_MOC_RUN
 #include <iostream>
+#endif
 
 GUITopic::GUITopic(QWidget* parent, const TopicConfig& cfg)
     : QWidget(parent),

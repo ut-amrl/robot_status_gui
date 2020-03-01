@@ -19,11 +19,13 @@
 */
 //========================================================================
 
+#ifndef Q_MOC_RUN
 #include <ros/ros.h>
 
 #include <iostream>
 #include <string>
 #include <vector>
+#endif
 
 struct TopicConfig {
   std::string human_name;

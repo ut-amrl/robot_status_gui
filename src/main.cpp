@@ -18,6 +18,7 @@
 */
 //========================================================================
 
+#ifndef Q_MOC_RUN
 #include <signal.h>
 
 #include <ros/ros.h>
@@ -28,6 +29,7 @@
 
 #include "gui_monitor.h"
 #include "topic_config.h"
+#endif
 
 bool running_ = true;
 QApplication* app = nullptr;

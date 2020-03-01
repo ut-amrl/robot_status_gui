@@ -22,10 +22,12 @@
 #include "gui_topic.h"
 #include "topic_config.h"
 
+#ifndef Q_MOC_RUN
 #include <time.h>
 #include <QWidget>
 #include <QtGui>
 #include <vector>
+#endif
 
 class GuiMonitor : public QWidget {
   Q_OBJECT

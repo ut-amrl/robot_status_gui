@@ -19,6 +19,7 @@
 //========================================================================
 #include "topic_config.h"
 
+#ifndef Q_MOC_RUN
 #include <geometry_msgs/PoseStamped.h>
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Path.h>
@@ -31,6 +32,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#endif
 
 TopicConfig::TopicConfig(std::string line)
     : target_freq(0), current_freq(0), update_count(0) {

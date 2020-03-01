@@ -18,10 +18,13 @@
 */
 //========================================================================
 #include "gui_monitor.h"
+
+#ifndef Q_MOC_RUN
 #include <QWidget>
 #include <QtGui>
 #include <vector>
 #include "gui_topic.h"
+#endif
 
 GuiMonitor::GuiMonitor(const TopicConfigManager& tcm) : QWidget() {
   QVBoxLayout* layout = new QVBoxLayout(this);
