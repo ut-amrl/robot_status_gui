@@ -69,6 +69,17 @@ std::string GetConfigPath(int argc, char** argv) {
   return kDefaultConfigFilePath;
 }
 
+bool RunAllAtStartup(int argc, char** argv) {
+  static constexpr auto kRunAtStartupFlag = "--runall";
+  for (int i = 0; i < argc; ++i) {
+    const std::string arg(argv[i]);
+    if (arg == kRunAtStartupFlag) {
+      return true;
+    }
+  }
+  return false;
+}
+
 int main(int argc, char** argv) {
   ros::init(argc, argv, "gui_monitor", ros::init_options::NoSigintHandler);
   ros::NodeHandle n;
@@ -81,6 +92,12 @@ int main(int argc, char** argv) {
 
   app = new QApplication(argc, argv);
   gui = new GuiMonitor(tcm);
+
+  if (RunAllAtStartup(argc, argv)) {
+    for (const auto& c : tcm.configs) {
+      c.RunStartCommand();
+    }
+  }
 
   gui->show();
   const auto gui_ret_val = app->exec();
