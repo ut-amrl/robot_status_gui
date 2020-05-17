@@ -40,7 +40,7 @@ struct TopicConfig {
   explicit TopicConfig(std::string line);
 
   template <typename T>
-  void UpdateFrequency(const T& msg) {
+  void UpdateFrequency(__attribute__((unused)) const T& msg) {
     update_count++;
   }
 

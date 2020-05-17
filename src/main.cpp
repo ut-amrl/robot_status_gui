@@ -36,7 +36,7 @@ QApplication* app = nullptr;
 GuiMonitor* gui = nullptr;
 std::thread ros_thread;
 
-void SignalHandler(const int signal) {
+void SignalHandler(__attribute__((unused)) const int signal) {
   running_ = false;
   if (app != nullptr) {
     app->exit();
